@@ -1,0 +1,94 @@
+<script src="LinkedList.js"></script>
+<script>
+/**
+ * Adds me, Mara, Juju, then Samira before Juju.
+ */
+function getFamily(){
+  var list = new LinkedList();
+
+  list.add({name: 'Rodrigo'});
+  list.add({name: 'Mara'});
+
+  var juju = list.add({name: 'Juliano'});
+
+  list.add({name: 'Samira'}, juju);
+
+  console.log('full list');
+  console.log(list.toString());
+  return list;
+}
+
+
+(function(){
+  var list = getFamily();
+  list.delete(list.head);
+
+  console.log('deleted head');
+  console.log(list.toString());
+}());
+
+
+(function(){
+  var list = getFamily();
+  list.delete(list.tail);
+
+  console.log('deleted tail');
+  console.log(list.toString());
+}());
+
+
+(function(){
+  var list = getFamily();
+  list.delete(list.head);
+
+  console.log('deleted head');
+  console.log(list.toString());
+}());
+
+
+(function(){
+  var list = getFamily();
+  list.delete(list.head.next.next);
+
+  console.log('deleted samira');
+  console.log(list.toString());
+}());
+
+
+(function(){
+  var list = getFamily();
+  list.delete({name: 'fake'});
+
+  console.log('deleted fake');
+  console.log(list.toString());
+}());
+
+
+(function(){
+  var list = getFamily();
+
+  list.clear();
+  console.log('cleared list');
+  console.log(list);
+}());
+
+
+(function(){
+  var list = getFamily();
+
+  console.log('has juju?');
+  console.log(list.has(list.head.next.next.next, function(currNode, node){
+    return currNode === node;
+  }));
+}());
+
+
+(function(){
+  var list = getFamily();
+
+  console.log('has fake?');
+  console.log(list.has(new Node({name: 'fake'}), function(currNode, node){
+    return currNode === node;
+  }));
+}());
+</script>
